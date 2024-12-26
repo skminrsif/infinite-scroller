@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Camera
+  - Enemy
+  - Spawner
+  - Scenery
   layers:
   - Default
   - TransparentFX
