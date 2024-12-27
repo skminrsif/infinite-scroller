@@ -13,10 +13,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     private float _moveVertical;
 
+    private int _lives;
+
     // Start is called before the first frame update
     void Start()
     {
         _rgbd = GetComponent<Rigidbody>();
+        _lives = 3;
+
     }
 
     // Update is called once per frame
@@ -32,6 +36,13 @@ public class PlayerController : MonoBehaviour
 
     private void Move(float speed) {
         _rgbd.AddForce(0, 0, speed);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Enemy") {
+            _lives -= 1;
+            Debug.Log("Player Lives: " + _lives);
+        }
     }
 
 }
