@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEditor.Experimental;
@@ -46,3 +47,4 @@ public class PlayerController : MonoBehaviour
     }
 
 }
+

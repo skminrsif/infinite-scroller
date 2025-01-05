@@ -29,4 +29,8 @@ public class EnemyBehavior : MonoBehaviour
     private void Move(float speed) {
         _rgbd.velocity = new Vector3(speed, 0, 0);
     }
+
+    // TO DO : tp back to assigned spawner once it reaches the end boundary
+
+    
 }

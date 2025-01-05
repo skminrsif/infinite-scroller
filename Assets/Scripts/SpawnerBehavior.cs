@@ -15,25 +15,50 @@ public class SpawnerBehavior : MonoBehaviour
     [SerializeField] private float _minInterval;
     [SerializeField] private float _maxInterval; 
 
+    [SerializeField] private int _maxEntityCount; // per spawner
+    private List<GameObject> _entityPool;
+
+    private float _intervalTime;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(RandomSpawn(Random.Range(_minInterval, _maxInterval)));
+        _entityPool = new List<GameObject>();
+        _intervalTime = GenerateRandomInterval(_minInterval, _maxInterval);
+        StartCoroutine(RandomSpawn(_intervalTime));
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        // StartCoroutine(RandomSpawn(Random.Range(_minInterval, _maxInterval)));
+        
     }
 
     private IEnumerator RandomSpawn(float waitTime) {
-        Debug.Log(waitTime);
-        yield return new WaitForSeconds(waitTime);
-        
-        int i = Random.Range(0, _prefabsToSpawn.Count);
-        Instantiate(_prefabsToSpawn[i]);
+        while (GameManager.Instance.IsPlaying()) {
+            Debug.Log(waitTime);
+            Debug.Log(_entityPool.Count);
 
-        // yield return new WaitForSeconds(waitTime);
+            if (_entityPool.Count < _maxEntityCount) {
+                int i = Random.Range(0, _prefabsToSpawn.Count);
+                GameObject newObj = Instantiate(_prefabsToSpawn[i]);
+                _entityPool.Add(newObj);    
+
+            } else {
+                int randomIndex = Random.Range(0, _entityPool.Count); 
+                _entityPool[randomIndex].SetActive(true);
+
+            }
+
+            yield return new WaitForSeconds(waitTime);
+
+            waitTime = GenerateRandomInterval(_minInterval, _maxInterval);
+
+        }
+        
+    }
+
+    public float GenerateRandomInterval(float minRange, float maxRange) {
+        return Random.Range(minRange, maxRange);
     }
 }
