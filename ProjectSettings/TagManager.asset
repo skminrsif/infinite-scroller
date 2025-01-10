@@ -8,11 +8,14 @@ TagManager:
   - Enemy
   - Spawner
   - Scenery
+  - EndBoundary
+  - PowerUp
+  - Invulnerability
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invulnerable
   - Water
   - UI
   - POV Camera

@@ -36,13 +36,14 @@ public class SpawnerBehavior : MonoBehaviour
 
     private IEnumerator RandomSpawn(float waitTime) {
         while (GameManager.Instance.IsPlaying()) {
-            Debug.Log(waitTime);
-            Debug.Log(_entityPool.Count);
+            // Debug.Log(waitTime);
+            // Debug.Log(_entityPool.Count);
 
             if (_entityPool.Count < _maxEntityCount) {
                 int i = Random.Range(0, _prefabsToSpawn.Count);
-                GameObject newObj = Instantiate(_prefabsToSpawn[i]);
+                GameObject newObj = Instantiate(_prefabsToSpawn[i], transform);
                 _entityPool.Add(newObj);    
+                
 
             } else {
                 int randomIndex = Random.Range(0, _entityPool.Count); 

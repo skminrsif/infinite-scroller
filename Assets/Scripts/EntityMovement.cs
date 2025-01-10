@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class EntityMovement : MonoBehaviour
 {
     private Rigidbody _rgbd;
+
+    private EnemyEntity entity;
 
     [SerializeField] private float _movementSpeed;
     
@@ -41,10 +43,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision) {
         if (collision.collider.CompareTag("EndBoundary")) {
-            Debug.Log("bap");
             TeleportToSpawn();
             gameObject.SetActive(false);
         }
     }
-    
 }

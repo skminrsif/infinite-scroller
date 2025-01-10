@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
     [SerializeField] private GameObject _isoCamObj;
     [SerializeField] private GameObject _povCamObj;
+
+    [SerializeField] private CinemachineVirtualCamera _blackOutCam;
+
 
     private Camera _isoCam;
     private Camera _povCam;
@@ -56,5 +60,10 @@ public class CameraSwitch : MonoBehaviour
             _subCam = _povCam;
 
         }
+    }
+
+
+    private void SwitchToBlack() {
+        
     }
 }
