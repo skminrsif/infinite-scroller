@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6971701146024414502}
   - component: {fileID: 2352319752116529549}
   - component: {fileID: -7686541078088804927}
+  - component: {fileID: -5648357243407417765}
   m_Layer: 0
   m_Name: Mountain
   m_TagString: Scenery
@@ -149,3 +150,16 @@ BillboardRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Billboard: {fileID: 0}
+--- !u!114 &-5648357243407417765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073653699472907868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a97a9f7d8e3e648aef8ed052c2e84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: -10

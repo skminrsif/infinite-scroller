@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 412243314335503912}
   - component: {fileID: 6228081470857951488}
   - component: {fileID: 2323259242094018507}
+  - component: {fileID: 1188683361458144996}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -99,7 +100,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -141,9 +142,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6703158199884035297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 970b41afda31801438d7d0be8e61234c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: -20
+--- !u!114 &1188683361458144996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703158199884035297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a97a9f7d8e3e648aef8ed052c2e84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: -20

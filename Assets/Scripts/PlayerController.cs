@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _deathTime;
     [SerializeField] private float _invulPowerTime;
 
-    // private bool _isDying;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
 
-        // _isDying = false;
     }
 
     // Update is called once per frame
@@ -67,28 +65,13 @@ public class PlayerController : MonoBehaviour
             
             StartCoroutine(GainDeathInvulnerability(_deathTime, _deathInvulTime, deathPosition));
 
-            // transform.position = deathPosition;
-            // transform.rotation = _originalRotation;
-            // StartCoroutine(GainInvulnerability(_deathInvulTime, Color.white));
-
         }
-
-        // if (collision.gameObject.tag == "Invulnerability") {
-        //     Debug.Log("invulnerability starts");
-        //     Debug.Log("invulnerability time:" + _invulTime);
-        //     StartCoroutine(GainInvulnerability(_invulTime, Color.yellow));
-        //     Debug.Log("invulnerability ends");
-
-        // }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Invulnerability") {
-            // Debug.Log("invulnerability starts");
-            // Debug.Log("invulnerability time:" + _invulTime);
             other.gameObject.SetActive(false);
             StartCoroutine(GainInvulnerability(_invulTime, Color.yellow));
-            // Debug.Log("invulnerability ends");
 
         }
     }
@@ -115,7 +98,6 @@ public class PlayerController : MonoBehaviour
         _renderer.material.color = _originalColor;
         gameObject.layer = _originalLayer;
         
-
     }
 
 }

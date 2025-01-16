@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6925684393045317000}
   - component: {fileID: 4579077597744432335}
   - component: {fileID: -9095756878432592037}
+  - component: {fileID: -6104820125987154478}
   m_Layer: 0
   m_Name: Trees
   m_TagString: Scenery
@@ -149,3 +150,16 @@ BillboardRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Billboard: {fileID: 0}
+--- !u!114 &-6104820125987154478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139136487500544975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a97a9f7d8e3e648aef8ed052c2e84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: -10

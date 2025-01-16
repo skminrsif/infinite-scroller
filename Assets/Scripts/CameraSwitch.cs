@@ -10,12 +10,17 @@ public class CameraSwitch : MonoBehaviour
     [SerializeField] private GameObject _povCamObj;
 
     [SerializeField] private CinemachineVirtualCamera _blackOutCam;
+    [SerializeField] CinemachineVirtualCamera[] _mainCameras;
+
+    [SerializeField] private float _secondsToFade;
 
 
     private Camera _isoCam;
     private Camera _povCam;
     private Camera _mainCam;
     private Camera _subCam;
+
+    
     
     private Rect _mainCamRect;
     private Rect _subCamRect;
@@ -31,7 +36,7 @@ public class CameraSwitch : MonoBehaviour
         _subCam = _povCam;
 
         _mainCamRect = new Rect(0.0f, 0.0f, 1.0f, 1.0f);
-        _subCamRect = new Rect(0.7f, 0.7f, 0.3f, 0.3f); 
+        _subCamRect = new Rect(0.7f, 0.7f, 0.3f, 0.3f);
 
     }
 
@@ -51,6 +56,8 @@ public class CameraSwitch : MonoBehaviour
         oldCamera.depth = 0;
         newCamera.depth = -1;
 
+        StartCoroutine(FadeInandOut(_mainCameras, _blackOutCam, _secondsToFade));
+
         if (oldCamera == _isoCam) {
             _mainCam = _povCam;
             _subCam = _isoCam;
@@ -63,7 +70,21 @@ public class CameraSwitch : MonoBehaviour
     }
 
 
-    private void SwitchToBlack() {
-        
+
+    private IEnumerator FadeInandOut(CinemachineVirtualCamera[] cameras, CinemachineVirtualCamera blackOutCam, float secondsToFade) {
+        for (int i = 0; i < cameras.Length; i++) {
+            cameras[i].Priority = 10;
+        }
+
+        blackOutCam.Priority = 20;
+        Debug.Log("its working");
+
+        yield return new WaitForSeconds(secondsToFade);
+
+        for (int i = 0; i < cameras.Length; i++) {
+            cameras[i].Priority = 20;
+        }
+
+        blackOutCam.Priority = 10;
     }
 }
