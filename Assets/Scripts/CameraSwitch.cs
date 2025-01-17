@@ -14,7 +14,6 @@ public class CameraSwitch : MonoBehaviour
 
     [SerializeField] private float _secondsToFade;
 
-
     private Camera _isoCam;
     private Camera _povCam;
     private Camera _mainCam;
@@ -77,7 +76,7 @@ public class CameraSwitch : MonoBehaviour
         }
 
         blackOutCam.Priority = 20;
-        Debug.Log("its working");
+        // Debug.Log("its working");
 
         yield return new WaitForSeconds(secondsToFade);
 

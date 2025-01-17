@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    public UIManager UIManager {
+        get; 
+        private set;
+        
+    }
+
     public static GameManager Instance {
         get;
         private set;
@@ -30,7 +37,10 @@ public class GameManager : MonoBehaviour
         } else {
             Instance = this;
             
+            UIManager = GetComponentInChildren<UIManager>();
         }
+
+    
     }
 
     public void Quit()

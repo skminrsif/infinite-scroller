@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
         _originalLayer = gameObject.layer;
 
         _lives = 3;
+        
+        // move this later to a separate class (PlayerManager) - controller should only be input
+        GameManager.Instance.UIManager.ChangeLivesText(_lives); 
+
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
 
@@ -61,8 +65,8 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Enemy") {
             Vector3 deathPosition = transform.position;
-            _lives -= 1;
-            
+            DecreaseLives();    
+        
             StartCoroutine(GainDeathInvulnerability(_deathTime, _deathInvulTime, deathPosition));
 
         }
@@ -99,6 +103,13 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = _originalLayer;
         
     }
+
+    private void DecreaseLives() {
+        _lives -= 1;
+        GameManager.Instance.UIManager.ChangeLivesText(_lives);
+    }
+
+    
 
 }
 
