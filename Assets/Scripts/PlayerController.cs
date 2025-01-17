@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
     private void DecreaseLives() {
         _lives -= 1;
         GameManager.Instance.UIManager.ChangeLivesText(_lives);
+
+        if (_lives == 0) {
+            GameManager.Instance.Quit();
+        }
+
     }
 
     

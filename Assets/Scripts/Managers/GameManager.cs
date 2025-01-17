@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public GameTimeManager GameTimeManager {
+        get; 
+        private set;
+        
+    }
+
     public static GameManager Instance {
         get;
         private set;
@@ -30,24 +36,8 @@ public class GameManager : MonoBehaviour
         _gameState = GameState.Play;
     }
 
-    private void Awake () {
-        if (Instance != null && Instance != this) {
-            Destroy(this);
-
-        } else {
-            Instance = this;
-            
-            UIManager = GetComponentInChildren<UIManager>();
-        }
-
-    
-    }
-
-    public void Quit()
-    {
-        SetGameState(GameState.Quit); // change this part later
-
-        if (Input.GetKeyDown(KeyCode.Q)) {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Q) && (_gameState == GameState.Quit)) {
             #if UNITY_EDITOR 
                 UnityEditor.EditorApplication.ExitPlaymode();
             
@@ -60,6 +50,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Awake () {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+
+        } else {
+            Instance = this;
+            
+            UIManager = GetComponentInChildren<UIManager>();
+            GameTimeManager = GetComponentInChildren<GameTimeManager>();
+        }
+
+    
+    }
+
+    public void Quit()
+    {
+        SetGameState(GameState.Quit); // change this part later
+
+        GameTimeManager.Pause();
+        UIManager.ShowQuitText();
+
+    }
+
     public bool IsPlaying() {
         if (_gameState == GameState.Play) {
             return true;
@@ -70,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause() {
         SetGameState(GameState.Pause);
+        GameTimeManager.Pause();
         // might change this to return gamestate
     }
 
