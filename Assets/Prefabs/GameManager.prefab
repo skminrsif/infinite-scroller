@@ -77,6 +77,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5330558907039621441}
   - {fileID: 8103730263794938898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,5 +91,88 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c3208c6fe25a0f4db45b18991bf118b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1293330187811349431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8472496994424642624}
+    m_Modifications:
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.526684
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3969898
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.2686844
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193291291063804736, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      propertyPath: m_Name
+      value: GameTimeManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4009196176666770937, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7193291291063804736, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2030098198695785474}
+  m_SourcePrefab: {fileID: 100100000, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+--- !u!4 &5330558907039621441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6344208348638659318, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+  m_PrefabInstance: {fileID: 1293330187811349431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8223960657885397239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7193291291063804736, guid: 93bb82f0239594b46a1ba297f31097dc, type: 3}
+  m_PrefabInstance: {fileID: 1293330187811349431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030098198695785474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223960657885397239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cacb01a75e4c6499fecf0b110a965e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

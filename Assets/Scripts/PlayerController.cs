@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         if (_lives == 0) {
             GameManager.Instance.Quit();
         }
-        
+
     }
 
     

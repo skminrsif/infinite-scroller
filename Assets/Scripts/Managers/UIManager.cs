@@ -8,7 +8,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _livesAmountText;
     [SerializeField] private TMP_Text _survivalAmountText;
+    [SerializeField] private TMP_Text _quitText;
     [SerializeField] private Canvas _canvas;
+    
 
     private int _livesAmount;
     private float _survivalAmount;
@@ -53,4 +55,8 @@ public class UIManager : MonoBehaviour
         _survivalAmountText.text = amount.ToString("0.00");
     }
 
+    public bool ShowQuitText() {
+        _quitText.gameObject.SetActive(true);
+        return true;
+    }
 }
