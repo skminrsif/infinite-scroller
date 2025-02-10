@@ -4,45 +4,68 @@ using UnityEngine;
 
 public class SceneryBehavior : MonoBehaviour
 {
+    [SerializeField] public GameObject _povCamObjec;
+    private Camera _povCam;
+    private Plane[] _camFrustrum;
+    private Bounds _bounds;
+    // private Dictionary<GameObject, Bounds> _sceneryObjects;
 
-    // [SerializeField] private float _movementSpeed;
-    private Vector3 _originalPosition;
-    private Quaternion _originalRotation;
-    // private Vector3 _position;
-    // private Vector3 _velocity;
+
+    // get colliders of all scenery objects in a list?
+    // scenery manager get all active scenery method
+
+    // scenery manager 
 
     // Start is called before the first frame update
     void Start()
     {
-        _originalPosition = transform.position;
-        _originalRotation = transform.rotation;
+        // _povCam = _povCamObject.GetComponent<Camera>();
+        _camFrustrum = GeometryUtility.CalculateFrustumPlanes(_povCam);
+        // _sceneryObjects = GameManager.Instance.SceneryManager.GetSceneryObjects();
+
+        _bounds = GetComponent<Collider>().bounds;
+
+        // Debug.Log("camFrus: " );
+        // foreach (var plane in _camFrustrum) {
+        //     Debug.Log(plane);
+        // }
+        
     }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     // _velocity = transform.
-    // }
+    void Update()
+    {
+        // DetectObject(_camFrustrum, _sceneryObjects);
 
-    // public void FixedUpdate() {
-    //     Move(_movementSpeed);
+        DetectObject(_camFrustrum, _bounds);
+    }
 
-    // }
+    // public void DetectObject(Plane[] planes, Dictionary<GameObject, Bounds> sceneryObjects) {
+    //     foreach (var sceneryPair in sceneryObjects) {
+    //         GameObject sceneryObject = sceneryPair.Key;
+    //         Bounds sceneryBounds = sceneryPair.Value;
 
-    // private void Move(float speed) {
+    //         Debug.Log(sceneryObject.name);
+    //         Debug.Log(sceneryBounds);
+
+    //         if (GeometryUtility.TestPlanesAABB(planes, sceneryBounds)) {
+    //             Debug.Log(sceneryObject.name + " has been detected.");
+
+    //         } else {
+    //             Debug.Log("nothing");
+    //         }
+    //     }
         
     // }
+    
 
-    // TO DO : tp back to assigned spawner once it reaches the end boundary
-    private void TeleportToSpawn() {
-        transform.position = _originalPosition;
-        transform.rotation = _originalRotation;
-    }
+    public void DetectObject(Plane[] planes, Bounds bounds) {
+        if (GeometryUtility.TestPlanesAABB(planes, bounds)) {
+            Debug.Log(name + " has been detected.");
 
-    public void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("EndBoundary")) {
-            TeleportToSpawn();
-            gameObject.SetActive(false);
+        } else {
+            Debug.Log("nothing");
         }
+
+        
     }
 }

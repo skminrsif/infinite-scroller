@@ -5,6 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public SceneryManager SceneryManager {
+        get;
+        private set;
+
+    }
+
     public UIManager UIManager {
         get; 
         private set;
@@ -59,6 +65,8 @@ public class GameManager : MonoBehaviour
             
             UIManager = GetComponentInChildren<UIManager>();
             GameTimeManager = GetComponentInChildren<GameTimeManager>();
+            SceneryManager = GetComponentInChildren<SceneryManager>();
+            
         }
 
     

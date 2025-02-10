@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1214187923659014546}
   - component: {fileID: 5525670531047965686}
   - component: {fileID: -3978308259900708638}
-  - component: {fileID: -7922211438011664886}
+  - component: {fileID: 6559832268223223955}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Scenery
@@ -104,7 +104,7 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
@@ -192,15 +192,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-7922211438011664886
+--- !u!114 &6559832268223223955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3762698869809435102}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6512101ad0e108c44a487abcb83579b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _povCamObj: {fileID: 0}

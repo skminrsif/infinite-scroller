@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 698e93723acd31a49816ce57a5fecf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityType: 0
   _prefabsToSpawn:
   - {fileID: 6703158199884035297, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
   _minInterval: 5
   _maxInterval: 10
+  _minInitialWaitTimeInterval: 0.5
+  _maxInitialWaitTimeInterval: 1
   _maxEntityCount: 3

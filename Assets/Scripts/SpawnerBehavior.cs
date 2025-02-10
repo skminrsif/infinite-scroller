@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnerBehavior : MonoBehaviour
@@ -11,54 +10,71 @@ public class SpawnerBehavior : MonoBehaviour
     // }
 
     // [SerializeField] private EntityType _entityType;
-    [SerializeField] private List<GameObject> _prefabsToSpawn;
-    [SerializeField] private float _minInterval;
-    [SerializeField] private float _maxInterval; 
-    [SerializeField] private float _minInitialWaitTimeInterval;
-    [SerializeField] private float _maxInitialWaitTimeInterval;
+    [SerializeField] protected List<GameObject> _prefabsToSpawn;
+    [SerializeField] protected float _minInterval;
+    [SerializeField] protected float _maxInterval; 
+    [SerializeField] protected float _minInitialWaitTimeInterval;
+    [SerializeField] protected float _maxInitialWaitTimeInterval;
 
-    [SerializeField] private int _maxEntityCount; // per spawner
-    private List<GameObject> _entityPool;
-
+    [SerializeField] protected int _maxEntityCount; // per spawner
+    protected List<GameObject> _entityPool;
     private float _intervalTime;
-    private float _initialIntervalTime;
+    protected float _initialIntervalTime;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        _entityPool = new List<GameObject>();
+        _entityPool = InitializeObjectPool(_maxEntityCount, _prefabsToSpawn);
         _initialIntervalTime = GenerateRandomInterval(_minInitialWaitTimeInterval, _maxInitialWaitTimeInterval);
         StartCoroutine(RandomSpawn(_initialIntervalTime));
+        Debug.Log("base spawner start");
 
     }
 
-    void Update()
-    {
-        
+    public virtual List<GameObject> InitializeObjectPool(int maxEntityCount, List<GameObject> prefabsToSpawn) {
+        List<GameObject> entityPool = new List<GameObject>();
+        for (int i = 0; i < maxEntityCount; i++) {
+            int j = Random.Range(0, prefabsToSpawn.Count);
+            GameObject newObj = Instantiate(prefabsToSpawn[j], transform);
+            newObj.name += newObj.GetInstanceID();
+            newObj.SetActive(false);
+            entityPool.Add(newObj);
+
+        }
+
+        return entityPool;
+
     }
 
-    private IEnumerator RandomSpawn(float waitTime) {
-        while (GameManager.Instance.IsPlaying()) {
+    public IEnumerator RandomSpawn(float waitTime) {
+        Debug.Log("coroutine");
+        if (_entityPool != null) {
+            while (GameManager.Instance.IsPlaying()) {
 
-            yield return new WaitForSeconds(waitTime);
+                yield return new WaitForSeconds(waitTime);
             
-            if (_entityPool.Count < _maxEntityCount) {
-                int i = Random.Range(0, _prefabsToSpawn.Count);
-                GameObject newObj = Instantiate(_prefabsToSpawn[i], transform);
-                _entityPool.Add(newObj);    
-                
+                // if (_entityPool.Count < _maxEntityCount) {
+                //     int i = Random.Range(0, _prefabsToSpawn.Count);
+                //     GameObject newObj = Instantiate(_prefabsToSpawn[i], transform);
+                //     newObj.name += newObj.GetInstanceID();
+                //     _entityPool.Add(newObj);    
+                    
+                    
 
-            } else {
+                // } else {
+                //     int randomIndex = Random.Range(0, _entityPool.Count); 
+                //     _entityPool[randomIndex].SetActive(true);
+
+                // }
+
                 int randomIndex = Random.Range(0, _entityPool.Count); 
                 _entityPool[randomIndex].SetActive(true);
 
-            }
+                waitTime = GenerateRandomInterval(_minInterval, _maxInterval);
 
-            
-
-            waitTime = GenerateRandomInterval(_minInterval, _maxInterval);
-
+            }   
         }
+        
         
     }
 

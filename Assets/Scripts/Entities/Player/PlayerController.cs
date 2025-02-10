@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _originalColor = _renderer.material.color;
         _originalLayer = gameObject.layer;
 
-        _lives = 3;
+        _lives = 10;
         
         // move this later to a separate class (PlayerManager) - controller should only be input
         GameManager.Instance.UIManager.ChangeLivesText(_lives); 
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy") {
             Vector3 deathPosition = transform.position;
             DecreaseLives();    
-        
+            // lock down state to death invul
             StartCoroutine(GainDeathInvulnerability(_deathTime, _deathInvulTime, deathPosition));
 
         }
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Invulnerability") {
             other.gameObject.SetActive(false);
             StartCoroutine(GainInvulnerability(_invulTime, Color.yellow));
-
+            // lock down state to invul power up
         }
     }
 
@@ -113,6 +113,10 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    // private void TakePicture() {
+
+    // }
 
     
 

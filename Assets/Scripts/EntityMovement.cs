@@ -8,7 +8,7 @@ public class EntityMovement : MonoBehaviour
 {
     private Rigidbody _rgbd;
 
-    private EnemyEntity entity;
+    private EnemyData entity;
 
     [SerializeField] private float _movementSpeed;
     
