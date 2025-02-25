@@ -35,7 +35,7 @@ public class GameTimeManager : MonoBehaviour
     void Update()
     {
         _gameTime += Time.deltaTime;
-        GameManager.Instance.UIManager.ChangeSurvivalTimeText(_gameTime);
+        GameManager.Instance.UIManager.SetSurvivalTimeText(_gameTime);
         
     }
 

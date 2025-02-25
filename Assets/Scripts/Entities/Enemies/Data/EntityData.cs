@@ -5,10 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EntityData")]  
 public class EntityData : ScriptableObject
 {   
-    public string prefabName;
     public GameObject prefab;
-
-    
-    
+    public float movementSpeed;
 
 }

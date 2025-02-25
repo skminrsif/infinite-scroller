@@ -5,6 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public FileManager FileManager {
+        get;
+        private set;
+    }
+
+    public CameraManager CameraManager {
+        get;
+        private set;
+    }
+
     public SceneryManager SceneryManager {
         get;
         private set;
@@ -37,7 +47,6 @@ public class GameManager : MonoBehaviour
     }
 
     private GameState _gameState;
-
     public void Start() {
         _gameState = GameState.Play;
     }
@@ -66,7 +75,8 @@ public class GameManager : MonoBehaviour
             UIManager = GetComponentInChildren<UIManager>();
             GameTimeManager = GetComponentInChildren<GameTimeManager>();
             SceneryManager = GetComponentInChildren<SceneryManager>();
-            
+            CameraManager = GetComponentInChildren<CameraManager>();
+            FileManager = GetComponentInChildren<FileManager>();
         }
 
     
@@ -76,8 +86,8 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.Quit); // change this part later
 
-        GameTimeManager.Pause();
-        UIManager.ShowQuitText();
+        // GameTimeManager.Pause();
+        // UIManager.ShowQuitText();
 
     }
 
@@ -91,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause() {
         SetGameState(GameState.Pause);
-        GameTimeManager.Pause();
+        // GameTimeManager.Pause();
         // might change this to return gamestate
     }
 
@@ -106,5 +116,6 @@ public class GameManager : MonoBehaviour
     private void SetGameState(GameState gameState) { // same with this; public vs private
         _gameState = gameState;
     }
+
 
 }

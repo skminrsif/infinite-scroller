@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -10,9 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _survivalAmountText;
     [SerializeField] private TMP_Text _quitText;
     [SerializeField] private Canvas _canvas;
-    
 
-    private int _livesAmount;
     private float _survivalAmount;
 
     public static UIManager Instance {
@@ -27,36 +22,29 @@ public class UIManager : MonoBehaviour
 
         } else {
             Instance = this;
-            
         }
     }
 
-    public float GetSurvivalTime() {
-        return _survivalAmount;
+
+    public void InitializePlayerDataUI(int livesAmount, int filmsAmount) {
+        SetLivesText(livesAmount);
+        SetFilmsText(filmsAmount);
     }
 
-    public void SetSurvivalTime(float survivalAmount) {
-        _survivalAmount = survivalAmount;
-    }
-
-    public int GetLivesAmount() {
-        return _livesAmount;
-    }
-    
-    public void SetLivesAmount(int amount) {
-        _livesAmount = amount;
-    }
-    
-    public void ChangeLivesText(int amount) {
+    public void SetLivesText(int amount) {
         _livesAmountText.text = amount.ToString();
     }
 
-    public void ChangeSurvivalTimeText(float amount) {
+    public void SetFilmsText(int amount) {
+        Debug.Log(amount);
+    }
+
+    public void SetSurvivalTimeText(float amount) {
         _survivalAmountText.text = amount.ToString("0.00");
     }
 
-    public bool ShowQuitText() {
+    public void ShowQuitText() {
         _quitText.gameObject.SetActive(true);
-        return true;
+        // return true;
     }
 }

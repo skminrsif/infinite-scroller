@@ -27,7 +27,6 @@ public class SpawnerBehavior : MonoBehaviour
         _entityPool = InitializeObjectPool(_maxEntityCount, _prefabsToSpawn);
         _initialIntervalTime = GenerateRandomInterval(_minInitialWaitTimeInterval, _maxInitialWaitTimeInterval);
         StartCoroutine(RandomSpawn(_initialIntervalTime));
-        Debug.Log("base spawner start");
 
     }
 
@@ -52,20 +51,6 @@ public class SpawnerBehavior : MonoBehaviour
             while (GameManager.Instance.IsPlaying()) {
 
                 yield return new WaitForSeconds(waitTime);
-            
-                // if (_entityPool.Count < _maxEntityCount) {
-                //     int i = Random.Range(0, _prefabsToSpawn.Count);
-                //     GameObject newObj = Instantiate(_prefabsToSpawn[i], transform);
-                //     newObj.name += newObj.GetInstanceID();
-                //     _entityPool.Add(newObj);    
-                    
-                    
-
-                // } else {
-                //     int randomIndex = Random.Range(0, _entityPool.Count); 
-                //     _entityPool[randomIndex].SetActive(true);
-
-                // }
 
                 int randomIndex = Random.Range(0, _entityPool.Count); 
                 _entityPool[randomIndex].SetActive(true);
