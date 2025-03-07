@@ -4,8 +4,8 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
-    public UnityEvent onCameraScreenshot;
-    public UnityEvent onFilmEmpty;
+    // public UnityEvent onCameraScreenshot;
+    // public UnityEvent onFilmEmpty;
 
     public void TakeScreenshot() {
         string temporaryScreenshot = GameManager.Instance.FileManager.AddTemporaryScreenshot();

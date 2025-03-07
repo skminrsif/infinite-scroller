@@ -12,6 +12,7 @@ TagManager:
   - PowerUp
   - Invulnerability
   - PlayerBoundary
+  - Projectile
   layers:
   - Default
   - TransparentFX

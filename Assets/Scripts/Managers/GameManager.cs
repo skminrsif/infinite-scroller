@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
     }
 
     private GameState _gameState;
+
+    // events    
+    public UnityEvent onTestButtonPressed;
+    public UnityEvent onPause;
+    public UnityEvent onUnpause;
+
     public void Start() {
         _gameState = GameState.Play;
     }
@@ -63,6 +70,18 @@ public class GameManager : MonoBehaviour
             
             #endif
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (_gameState == GameState.Play) {
+                onPause.Invoke();
+
+            } else if (_gameState == GameState.Pause) {
+                onUnpause.Invoke();
+
+            }
+            
+        }
+
     }
 
     private void Awake () {
@@ -84,10 +103,17 @@ public class GameManager : MonoBehaviour
 
     public void Quit()
     {
-        SetGameState(GameState.Quit); // change this part later
+        _gameState = GameState.Quit; 
 
-        // GameTimeManager.Pause();
-        // UIManager.ShowQuitText();
+        #if UNITY_EDITOR 
+            UnityEditor.EditorApplication.ExitPlaymode();
+        
+        #endif
+
+        #if UNITY_STANDALONE
+            Application.Quit();
+        
+        #endif
 
     }
 
@@ -101,8 +127,6 @@ public class GameManager : MonoBehaviour
 
     public void Pause() {
         SetGameState(GameState.Pause);
-        // GameTimeManager.Pause();
-        // might change this to return gamestate
     }
 
     public void Play() {

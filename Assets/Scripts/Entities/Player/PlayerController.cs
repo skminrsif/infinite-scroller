@@ -11,11 +11,10 @@ public class PlayerController : MonoBehaviour
     private Quaternion _originalRotation;
     
     private PlayerManager _playerManager;
+    private RigidbodyConstraints _originalConstraints;
     [SerializeField] private PlayerData _playerData;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Awake() {
         _rgbd = GetComponent<Rigidbody>();
         _renderer = GetComponent<Renderer>();
         _originalColor = _renderer.material.color;
@@ -23,6 +22,7 @@ public class PlayerController : MonoBehaviour
         _playerManager = GetComponent<PlayerManager>();
         _originalPosition = transform.position;
         _originalRotation = transform.rotation;
+        _originalConstraints = _rgbd.constraints;
 
     }
 
@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _moveVertical = Input.GetAxis("Vertical");
+        
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            GameManager.Instance.onTestButtonPressed.Invoke();
+        }
 
     }
 
@@ -52,8 +56,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Enemy" && !_playerManager.IsHurt && !_playerManager.IsInvulnerable) {
-            _playerManager.PlayerHit();
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Obstacle") {
+            if (!_playerManager.IsHurt && !_playerManager.IsInvulnerable) {
+                _playerManager.PlayerHit();
+
+            }
             
         }
     }
@@ -69,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator GainDeathInvulnerability(float deathTime, float deathInvulnerabilityTime, Vector3 deathPosition) {
         _renderer.material.color = Color.black;
+        SetPlayerConstraintsActive(false);
         yield return new WaitForSeconds(deathTime);
 
         _playerManager.SwitchToInvulnerableState();
@@ -83,6 +91,7 @@ public class PlayerController : MonoBehaviour
         _renderer.material.color = _originalColor;
         _playerManager.SwitchToDefaultState();
         _playerManager.PlayerNotInvulnerable();
+        SetPlayerConstraintsActive(true);
 
     }
 
@@ -95,19 +104,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // private void TakePicture() {
+    private void SetPlayerConstraintsActive(bool active) {
+        if (active) {
+            _rgbd.constraints = _originalConstraints;
 
-    // }
+        } else {
+            _rgbd.constraints = RigidbodyConstraints.FreezePositionX;
 
-
-    // private void OnTriggerEnter(Collider other) {
-    //     if (other.gameObject.tag == "Invulnerability") {
-    //         other.gameObject.SetActive(false);
-    //         StartCoroutine(GainInvulnerability(_invulTime, Color.yellow));
-    //         // lock down state to invul power up
-    //     }
-    // }
-
+        }
+        
+    }
 
     
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,15 +13,16 @@ public class PlayerManager : MonoBehaviour
     private int _lives;
     private int _filmCount;    
     private int _originalLayer;
+    public GameObject PlayerObject { get; private set; }
 
     // events
-    public DoubleIntEvent OnPlayerInitialize;
-    public IntEvent OnPlayerHit;
-    public UnityEvent OnPlayerDeath;
-    public UnityEvent OnPlayerRespawn;
-    public FloatEvent OnPlayerInvulPowerUp;
-    public IntEvent OnPlayerScreenshot;
-    public UnityEvent OnPlayerFilmEmpty;
+    public DoubleIntEvent onPlayerInitialize;
+    public IntEvent onPlayerHit;
+    public UnityEvent onPlayerDeath;
+    public UnityEvent onPlayerRespawn;
+    public FloatEvent onPlayerInvulPowerUp;
+    public IntEvent onPlayerScreenshot;
+    public UnityEvent onPlayerFilmEmpty;
 
     // player states
     public bool IsInvulnerable { get; private set; }
@@ -53,7 +55,9 @@ public class PlayerManager : MonoBehaviour
         IsInvulnerable = false;
         IsHurt = false;
 
-        OnPlayerInitialize.Invoke(_lives, _filmCount);
+        PlayerObject = gameObject;
+
+        onPlayerInitialize.Invoke(_lives, _filmCount);
         
         
     }
@@ -79,24 +83,26 @@ public class PlayerManager : MonoBehaviour
             IsHurt = true;
 
             if (_lives <= 0) {
-                OnPlayerDeath.Invoke();
+                onPlayerDeath.Invoke();
                 
             } else {
-                OnPlayerHit.Invoke(_lives);
+                onPlayerHit.Invoke(_lives);
+
             }
 
         }
         
-
     }
+
 
     public void PlayerInvulPowerUp() {
         IsInvulnerable = true;    
-        OnPlayerInvulPowerUp.Invoke(_playerData.invulTime);
+        onPlayerInvulPowerUp.Invoke(_playerData.invulTime);
     }
 
     public void PlayerRecover() {
         IsHurt = false;
+        
     }
 
     public void PlayerNotInvulnerable() {
@@ -105,10 +111,15 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerScreenshot() {
         if (_filmCount > 0) {
-            OnPlayerScreenshot.Invoke(_filmCount);
+            _filmCount--;
+            onPlayerScreenshot.Invoke(_filmCount);
+            
+        } else {
+            onPlayerFilmEmpty.Invoke();
+
         }
         
-        _filmCount--;
+        
     }
 
     public void RespawnPlayer() {
@@ -116,8 +127,12 @@ public class PlayerManager : MonoBehaviour
         IsInvulnerable = false;
         IsHurt = false;
 
-        OnPlayerRespawn.Invoke();
+        onPlayerRespawn.Invoke();
 
+    }
+
+    public Vector3 GetPlayerLastPosition() {
+        return PlayerObject.transform.position;
     }
 
 }

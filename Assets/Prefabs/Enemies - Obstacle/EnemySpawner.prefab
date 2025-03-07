@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabsToSpawn:
   - {fileID: 6703158199884035297, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
+  - {fileID: 7371665008313206330, guid: 93e6692fdc6cb844b8c72e91223bf64a, type: 3}
   _minInterval: 5
   _maxInterval: 10
   _minInitialWaitTimeInterval: 0.5

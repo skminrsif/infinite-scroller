@@ -1,14 +1,25 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // HUD
     [SerializeField] private TMP_Text _livesAmountText;
     [SerializeField] private TMP_Text _survivalAmountText;
     [SerializeField] private TMP_Text _quitText;
-    [SerializeField] private Canvas _canvas;
-
+    [SerializeField] private Canvas _hud;
     private float _survivalAmount;
+
+
+    // MENU
+    [SerializeField] private Canvas _menu;
+
+    // JOURNAL
+    [SerializeField] private Canvas _journal;
+
+    // END GAME SCREEN
+    
 
     public static UIManager Instance {
         get;
@@ -45,6 +56,18 @@ public class UIManager : MonoBehaviour
 
     public void ShowQuitText() {
         _quitText.gameObject.SetActive(true);
-        // return true;
+
     }
+
+    public void ShowMenu(bool option) {
+        _menu.gameObject.SetActive(option);
+    }
+
+    public void ShowJournal(bool option) {
+        _journal.gameObject.SetActive(option);
+    }
+
+    
+
+    
 }

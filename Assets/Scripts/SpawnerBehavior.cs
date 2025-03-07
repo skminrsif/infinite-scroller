@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class SpawnerBehavior : MonoBehaviour
 {
-    // public enum EntityType {
-    //     Obstacle,
-    //     Enemy
-    // }
-
-    // [SerializeField] private EntityType _entityType;
     [SerializeField] protected List<GameObject> _prefabsToSpawn;
     [SerializeField] protected float _minInterval;
     [SerializeField] protected float _maxInterval; 
@@ -36,6 +30,7 @@ public class SpawnerBehavior : MonoBehaviour
             int j = Random.Range(0, prefabsToSpawn.Count);
             GameObject newObj = Instantiate(prefabsToSpawn[j], transform);
             newObj.name += newObj.GetInstanceID();
+            newObj.transform.position = transform.position;
             newObj.SetActive(false);
             entityPool.Add(newObj);
 
@@ -46,7 +41,6 @@ public class SpawnerBehavior : MonoBehaviour
     }
 
     public IEnumerator RandomSpawn(float waitTime) {
-        Debug.Log("coroutine");
         if (_entityPool != null) {
             while (GameManager.Instance.IsPlaying()) {
 
@@ -65,5 +59,10 @@ public class SpawnerBehavior : MonoBehaviour
 
     public float GenerateRandomInterval(float minRange, float maxRange) {
         return Random.Range(minRange, maxRange);
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, new Vector3(1, 1, 1));
     }
 }

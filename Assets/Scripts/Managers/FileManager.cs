@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class FileManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class FileManager : MonoBehaviour
     private string _tempFolderPath;
     private string _fileType;
     public List<string> TemporaryScreenshotsList { get; private set; }
+    private int _cursor;
+
     public static FileManager Instance {
         get;
         private set;
@@ -30,6 +33,7 @@ public class FileManager : MonoBehaviour
 
             _tempFileName = "temporaryScreenshot_";
             _fileType = ".png";
+            _cursor = 0;
         }
     }
 
@@ -60,6 +64,12 @@ public class FileManager : MonoBehaviour
     //     ScreenshotsList.Add(fileName);
     //     return Screen
     // }
+
+    public void SwitchImageShown(int cursor) {
+        
+    }
+
+    // public 
 
     
 
