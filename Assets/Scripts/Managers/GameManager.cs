@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
     
     }
 
+
     public void Quit()
     {
         _gameState = GameState.Quit; 
@@ -137,7 +138,7 @@ public class GameManager : MonoBehaviour
         return _gameState; 
     }
 
-    private void SetGameState(GameState gameState) { // same with this; public vs private
+    public void SetGameState(GameState gameState) { // same with this; public vs private
         _gameState = gameState;
     }
 

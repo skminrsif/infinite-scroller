@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4933814966576213997, guid: ecb8449ae164ddb4e9b79760ec1f22c8, type: 3}
   movementSpeed: 20
-  lives: 10
+  lives: 3
   filmCount: 5
   invulTime: 10
   deathTime: 3

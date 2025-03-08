@@ -6,14 +6,27 @@ public class ScenerySpawnerBehavior : SpawnerBehavior
 {   
     public override void Start()
     {
-        // _entityPool = InitializeObjectPool(_maxEntityCount, _prefabsToSpawn);
-        // _initialIntervalTime = GenerateRandomInterval(_minInitialWaitTimeInterval, _maxInitialWaitTimeInterval);
-        // StartCoroutine(RandomSpawn(_initialIntervalTime));
-
         base.Start();
-        Debug.Log("scenery start");
     }
-    
+
+    public override void Awake()
+    {
+        // base.Awake();
+    }
+
+    public override IEnumerator RandomSpawn(float waitTime) {
+        if (_entityPool != null) {
+            while (GameManager.Instance.IsPlaying()) {
+                yield return new WaitForSeconds(waitTime);
+                int randomIndex = Random.Range(0, _entityPool.Count); 
+                _entityPool[randomIndex].SetActive(true);
+                waitTime = GenerateRandomInterval(_minInterval, _maxInterval);
+
+            }   
+        }
+        
+        
+    }
 
     public override List<GameObject> InitializeObjectPool(int maxEntityCount, List<GameObject> prefabsToSpawn) {
         List<GameObject> entityPool = new List<GameObject>();

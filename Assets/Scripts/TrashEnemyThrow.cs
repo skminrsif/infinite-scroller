@@ -7,6 +7,15 @@ public class TrashEnemyThrow : MonoBehaviour
     private GameObject _trashProjectile;
     private ObjectPool _trashPool;
     private GameObject _enemyCar;
+    private bool _hasThrown;
+
+    void OnEnable() {
+        _hasThrown = false;
+    }
+
+    void OnDisable() {
+        _hasThrown = true;
+    }
     
     void Awake() {
         _enemyCar = gameObject;
@@ -14,6 +23,7 @@ public class TrashEnemyThrow : MonoBehaviour
     }
 
     public void ThrowTrash() {
+
         _trashProjectile = _trashPool.GetPooledObject();
 
         if (_trashProjectile != null) {
@@ -22,6 +32,13 @@ public class TrashEnemyThrow : MonoBehaviour
             _trashProjectile.SetActive(true);
         }
         
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "PlayerBoundary" && !_hasThrown) {
+            ThrowTrash();
+            _hasThrown = true;
+        }
     }
 
 }

@@ -8,6 +8,7 @@ public class TrashBehavior : MonoBehaviour
 
     void Awake() {
         _playerLastPosition = PlayerManager.Instance.GetPlayerLastPosition();
+        gameObject.GetComponent<Collider>().includeLayers = LayerMask.NameToLayer("Player");
     }
 
     
@@ -21,7 +22,7 @@ public class TrashBehavior : MonoBehaviour
 
     void Update() {
         if (Vector3.Distance(transform.position, _playerLastPosition) < 0.3) {
-            Debug.Log("last pos");
+            gameObject.GetComponent<Collider>().excludeLayers = LayerMask.NameToLayer("Player");
             StartCoroutine(Despawn());
         }
     }

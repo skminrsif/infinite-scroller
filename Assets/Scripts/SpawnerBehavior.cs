@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SpawnerBehavior : MonoBehaviour
 {
     [SerializeField] protected List<GameObject> _prefabsToSpawn;
@@ -15,6 +14,9 @@ public class SpawnerBehavior : MonoBehaviour
     private float _intervalTime;
     protected float _initialIntervalTime;
 
+    private GameObject _currentSpawnedEntity;
+
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -22,6 +24,9 @@ public class SpawnerBehavior : MonoBehaviour
         _initialIntervalTime = GenerateRandomInterval(_minInitialWaitTimeInterval, _maxInitialWaitTimeInterval);
         StartCoroutine(RandomSpawn(_initialIntervalTime));
 
+    }
+
+    public virtual void Awake() {
     }
 
     public virtual List<GameObject> InitializeObjectPool(int maxEntityCount, List<GameObject> prefabsToSpawn) {
@@ -40,14 +45,19 @@ public class SpawnerBehavior : MonoBehaviour
 
     }
 
-    public IEnumerator RandomSpawn(float waitTime) {
+    public virtual IEnumerator RandomSpawn(float waitTime) {
+        Debug.Log("wah");
         if (_entityPool != null) {
             while (GameManager.Instance.IsPlaying()) {
-
+                
                 yield return new WaitForSeconds(waitTime);
 
-                int randomIndex = Random.Range(0, _entityPool.Count); 
-                _entityPool[randomIndex].SetActive(true);
+                if (_currentSpawnedEntity == null || !_currentSpawnedEntity.activeInHierarchy) {
+                    int randomIndex = Random.Range(0, _entityPool.Count); 
+                    _entityPool[randomIndex].SetActive(true);
+                    _currentSpawnedEntity = _entityPool[randomIndex];
+                    Debug.Log(_currentSpawnedEntity);
+                }
 
                 waitTime = GenerateRandomInterval(_minInterval, _maxInterval);
 

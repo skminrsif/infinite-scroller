@@ -21,11 +21,24 @@ public class PlayerBoundary : MonoBehaviour
         }
     }
 
+    
+
     public UnityEvent onEnemyCrossingPlayerBoundary;
+    public List<GameObject> Listeners {
+        get;
+        private set;
+    }
+
+    void Update() {
+        foreach (var item in Listeners)
+        {
+            Debug.Log(item);
+        }
+    }
 
 
     void Start() {
-        // _objSphereCollider = GetComponent<SphereCollider>();
+        Listeners = new List<GameObject>();
 
     }
 

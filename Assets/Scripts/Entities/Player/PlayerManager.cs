@@ -110,14 +110,17 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void PlayerScreenshot() {
-        if (_filmCount > 0) {
-            _filmCount--;
-            onPlayerScreenshot.Invoke(_filmCount);
-            
-        } else {
-            onPlayerFilmEmpty.Invoke();
+        if (GameManager.Instance.GetGameState() == GameManager.GameState.Play) {
+            if (_filmCount > 0) {
+                _filmCount--;
+                onPlayerScreenshot.Invoke(_filmCount);
+                
+            } else {
+                onPlayerFilmEmpty.Invoke();
 
+            }
         }
+        
         
         
     }

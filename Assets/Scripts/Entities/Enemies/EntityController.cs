@@ -14,14 +14,14 @@ public class EntityController : MonoBehaviour
     protected Quaternion originalRotation;
 
     // Start is called before the first frame update
-    protected void Start()
+    public virtual void Start()
     {
         rgbd = GetComponent<Rigidbody>();
         originalPosition = transform.position;
         originalRotation = transform.rotation;
     }
 
-    void FixedUpdate() {
+    public virtual void FixedUpdate() {
         Move(movementSpeed);
         Debug.Log("EntityController FU");
 

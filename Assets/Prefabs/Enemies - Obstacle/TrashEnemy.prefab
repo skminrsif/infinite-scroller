@@ -69,8 +69,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2323259242094018507, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
+      propertyPath: _maxWaitTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2323259242094018507, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
       propertyPath: movementSpeed
       value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228081470857951488, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
+      propertyPath: m_Constraints
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 6703158199884035297, guid: 16bc0848f822e1b4d946c2dea1c61e12, type: 3}
       propertyPath: m_Name

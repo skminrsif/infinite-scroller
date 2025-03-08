@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2756435958795373065}
   - component: {fileID: 4608920460970246103}
+  - component: {fileID: 1669189851783951832}
   m_Layer: 0
   m_Name: PlayerBoundary
   m_TagString: PlayerBoundary
@@ -51,8 +52,23 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 16
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1669189851783951832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133013355138539034}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9f980d7ce5d34478471ad7d1bf60c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnemyCrossingPlayerBoundary:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &896982142724454224
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,24 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5c7b13b3f61cc4daf5e33bbca7acea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCameraScreenshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onFilmEmpty:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1575551872551193257
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +398,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 447
+    m_Bits: 1471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -620,7 +618,7 @@ GameObject:
   - component: {fileID: 3450927016607745364}
   - component: {fileID: 6530286312911741262}
   - component: {fileID: 5225720622045179653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Car
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -768,7 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: c90845c3213c24847b433a9db89a25ab, type: 2}
-  OnPlayerInitialize:
+  onPlayerInitialize:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -783,19 +781,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: SetSurvivalTimeText
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnPlayerHit:
+  onPlayerHit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -822,7 +808,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerDeath:
+  onPlayerDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -861,10 +847,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerRespawn:
+  onPlayerRespawn:
     m_PersistentCalls:
       m_Calls: []
-  OnPlayerInvulPowerUp:
+  onPlayerInvulPowerUp:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6530286312911741262}
@@ -879,7 +865,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerScreenshot:
+  onPlayerScreenshot:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4264717917660680261}
@@ -906,7 +892,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerFilmEmpty:
+  onPlayerFilmEmpty:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6430128112742348347
